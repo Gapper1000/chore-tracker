@@ -49,3 +49,8 @@ def books():
 
     ]
     return books
+
+@home_routes.route("/login")
+def login(): 
+    print("LOGIN...")
+    return render_template("login.html")
