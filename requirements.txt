@@ -1,6 +1,7 @@
-
-
+python-dotenv
+getpass4
 flask
+
 
 #Test
 

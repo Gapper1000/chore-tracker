@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "freestyle-project-407217",
+  "private_key_id": "3968e1b669865affab282e7bd817448e5c7c4323",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCu1LzwhLCNxwm6\npCPPQjPmxy7tgzeT9mKDMhG0hhNLYtgA2lMOeJAZkWOwOcNY8/I4sm/fWyHe7hM9\nxkxFk4UoXwCU1ySmSGvhKJk1hiQ/LoEDNmNgZ01YcG5F3Vx4fwgqks2zcozpYAfv\ntb80alAiW6+OY8tBGOyrg3C39f49Ne0fU+xoX1vOj3Qx7LVs3o7EvkxJeDCOSJoP\nXBFot35avUCxIurICRA1nsWwtUczpwJkod1mQlZ4v/SS7Er5zPn4eWODxdpBViO5\nVFqircGMeBkqGeX/E+F9q2B8JcHfryHic9V1GdIYBvy+jxxFfbZVq12+O1nsWHkw\nKqLv7xwzAgMBAAECggEABw3JGPP+YtBroXheULSjsj79GYYlNIOvXwqJHlbk6Zi+\nWe9B6waNDqShq6PylscyhOKy+TimRplY22UBzmWj7LuqIvDSc+13tM9V7Yvqlt+b\nqVm4OFTsRCvQUMjpCM+PSjByh9GQwxjymQa+a5eSgVOTr+0+b4zy5GSncQF5O/Aj\nY2UebnyUSH5MG3F9F2HL7bQqXRcVyE8E7tLssaASJiJm7rhlbOAhH5ZTCUprPCpA\nXP1Gt+nGyL6c5Biz+5JUUNYbvvpi8G2JNe1NONtGw8d3w8vx/WmjEcg8XdMYFBn7\nkottKrVkHmnhAWvJikn1px+iBCrv3q4YNUo9qR+wiQKBgQDWSO48cjZXQuhTKqdB\nTiAe/oNw4p3tII8I5GIhy7fhiyHyMTHP4L/JYa0jtTpj0C0h4GvOrQ8FgfmwZtbq\ndN3pgZlsb9NWf4h0YV1m91d7YA2X+mqSmHMCQ50p6/oX4RkjynI3QZcc5OquG0vr\n4CI6Tfen6OpYE4rIBtsuzWNQjwKBgQDQ3ZcFpJURJNYkhP8dGGdUnhS+bdt56sWW\naT4aKLADYIF4QROdjxdvolS2LTf1ArXLIrbF8D2bp7wFDqH8BHLXYpltTQRbK6eJ\nLDtY7FRa5/HgssgweU+spf6rZPwjDaAI7L/KuS2piuc7IR+farEiHnb5VUXF4KsZ\n1wga86dEHQKBgGNPV4ISGJcmfg+VNACzGXXj1Lzree+c6E1hsw0goe7YkXnyTLif\n26KULy7eXdpGb7REkxIs6EpQK40SjEYKtZHzq0wzI0nyPyZYvXXr6dJW+NXXi663\nEo4ZEeyM3dJVU1ZgC8EKF+OfQBhCtFP0A0jsO3vJGVqKbAY6DzjInV+HAoGAQyzh\no6j5YJguX3R+8IamxSpKlayTiDSf8+5JUPSBF7T0Lw8PFf+tk/PrtuP4OU7z1S+H\nBUZtKiDace3w3zM3FFrb6bF5kzEJIy8cr07jGpG603/srtp1a5u/urQx+7woGna6\ngKLqMrs//1554zXXXpfZv/tTA39syFTGgJSY2WkCgYB2own2x2JpjD2RjFmOak4G\nXx0UKO0t2g491AUfjTz5JCsjuMXziKHfFGYj7BaiCxv83kMQF23GrDAkihhhRvEg\nOC++1w4jRxazEWPY/CzX97kYJNgWQgRFawGS/Z7J44CL5gw05WBTbXs9oob3dPHh\n7yGMZaipmhY6Dky/HXpKPA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "freestyle-project-service-acco@freestyle-project-407217.iam.gserviceaccount.com",
+  "client_id": "108720650236765150589",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/freestyle-project-service-acco%40freestyle-project-407217.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

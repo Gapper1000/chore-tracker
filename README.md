@@ -29,6 +29,11 @@ pip install -r requirements.txt
 
 Run the example script:
 
+```sh
+python app/login.py
+
+python app/fileReader.py
+```
 
 ## Testing
 
