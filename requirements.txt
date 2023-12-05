@@ -1,7 +1,8 @@
 python-dotenv
 getpass4
 flask
-
+pandas
+openpyxl
 
 #Test
 
