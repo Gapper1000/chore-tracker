@@ -14,7 +14,7 @@ if __name__ == "__main__":
         chore_df['Due Date'] = pd.to_datetime(chore_df['Due Date'], errors='coerce')
         for index, row in chore_df.iterrows():
             if pd.isnull(row['Status']):
-                chore_df.at[index, 'Status'] = False
+                chore_df.at[index, 'Status'] = 0
         chore_df['Status'] = chore_df['Status'].astype(bool)
         return chore_df
 
@@ -31,11 +31,36 @@ if __name__ == "__main__":
         except IndexError:
             print(f"{column} {cell} not found please try again")
             return None
+        
+    def saveToFile(chore_df, filePath):
+        """
+        Save the updated DataFrame to the Excel file.
 
-chore_df = readFile(chore_df)
-print (chore_df)
+        Parameters:
+        - chore_df (pd.DataFrame): The updated Chore Tracker DataFrame.
+        - filePath (str): The path to the Excel file.
+        - sheet_name (str): The name of the sheet in the Excel file. Default is 'ChoreTracker'.
+        """
+        chore_df.to_excel(filePath, index=False)
+        print("changes saved")
+        return
+
+
+
+
+# chore_df = readFile(chore_df)
+# print (chore_df)
+
+# saveToFile(chore_df, filePath)
+
+# chore_df = readFile(chore_df)
+# print (chore_df)
+
 
 # editStatus(chore_df, "Snapper", True)
+# saveToFile(chore_df, filePath)
+
+# chore_df = readFile(chore_df)
 # print (chore_df)
 
 
