@@ -32,8 +32,12 @@ Run the example script:
 ```sh
 python app/login.py
 
-python app/fileReader.py
+python app/choreFileReader.py
 ```
+
+File setup for choreFileReader.py:
+
+
 
 ## Testing
 
