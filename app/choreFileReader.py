@@ -60,33 +60,3 @@ def duplicateSheet(filePath): #doesnt work here but works in duplicate.py
         except Exception as e:
             print(f"Error duplicating sheet: {e}")
             return
-
-# __name__ == "__main__":
-
-
-    
-
-    
-
-    
-
-# duplicateSheet(filePath)
-
-# saveToFile(chore_df, filePath)
-
-
-
-# chore_df = readFile(chore_df)
-# print (chore_df)
-
-# saveToFile(chore_df, filePath)
-
-# chore_df = readFile(chore_df)
-# print (chore_df)
-
-
-# editStatus(chore_df, "Snapper", True)
-# saveToFile(chore_df, filePath)
-
-# chore_df = readFile(chore_df)
-# print (chore_df)
