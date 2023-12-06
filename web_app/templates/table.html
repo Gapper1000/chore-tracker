@@ -1,0 +1,34 @@
+{% extends "bootstrap_5_layout.html" %}
+{% set active_page = "tasks" %}
+
+{% block content %}
+
+<h2>Chore Dashboard</h2>
+
+<p class="lead">Number of housemates: {{ latest_rate_pct }} living at {{ latest_date }}</p> <!-- Fix this to make it the house plus number of housemates-->
+
+<table class="table table-hover table-responsive caption-top">
+    <caption>Chore Table</caption>
+    <thead>
+        <tr>
+            <th scope="col">Task</th>
+            <th scope="col">Assignee</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for index, row in chore_df.iterrows() %}
+        <tr>
+            <td>{{ row['Assignee'] }}</td>
+            <td>{{ row['Task'] }}</td>
+            <td>{{ row['Due Date'] }}</td>
+            <td>{{ 'Done' if row['Status'] else 'Pending' }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}

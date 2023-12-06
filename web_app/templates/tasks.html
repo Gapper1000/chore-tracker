@@ -1,0 +1,39 @@
+{% extends "bootstrap_5_layout.html" %}
+{% set active_page = "tasks" %}
+
+{% block content %}
+
+<div class="input-group mb-3">
+  <label class="input-group-text" for="inputGroupSelect01">Housemate</label>
+  <select class="form-select" id="inputGroupSelect01">
+    <option selected>Choose...</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>
+
+<div class="list-group">
+  <label class="list-group-item">
+    <input class="form-check-input me-1" type="checkbox" value="">
+    First checkbox
+  </label>
+  <label class="list-group-item">
+    <input class="form-check-input me-1" type="checkbox" value="">
+    Second checkbox
+  </label>
+  <label class="list-group-item">
+    <input class="form-check-input me-1" type="checkbox" value="">
+    Third checkbox
+  </label>
+  <label class="list-group-item">
+    <input class="form-check-input me-1" type="checkbox" value="">
+    Fourth checkbox
+  </label>
+  <label class="list-group-item">
+    <input class="form-check-input me-1" type="checkbox" value="">
+    Fifth checkbox
+  </label>
+</div>
+
+{% endblock %}

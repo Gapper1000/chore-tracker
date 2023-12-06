@@ -29,6 +29,15 @@ pip install -r requirements.txt
 
 Run the example script:
 
+```sh
+python app/login.py
+
+python app/choreFileReader.py
+```
+
+File setup for choreFileReader.py:
+
+
 
 ## Testing
 
