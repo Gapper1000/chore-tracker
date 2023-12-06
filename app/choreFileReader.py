@@ -7,9 +7,7 @@ selected_columns = ['Assignee', 'Task', 'Due Date', 'Status']
 chore_df = pd.read_excel(filePath, usecols=selected_columns)
 
 
-if __name__ == "__main__":
-
-    def readFile(chore_df):
+def readFile(chore_df):
         chore_df['Assignee'] = chore_df['Assignee'].astype(object)
         chore_df['Task'] = chore_df['Task'].astype(str)
         chore_df['Due Date'] = pd.to_datetime(chore_df['Due Date'], errors='coerce')
@@ -19,13 +17,13 @@ if __name__ == "__main__":
         chore_df['Status'] = chore_df['Status'].astype(bool)
         return chore_df
 
-    def editStatus(chore_df, task_name=str, new_status=bool):
+def editStatus(chore_df, task_name=str, new_status=bool):
         index = columnIndex(chore_df, 'Task', task_name)
         if index != None:
             chore_df.loc[index, 'Status'] = new_status
         return chore_df
 
-    def columnIndex(chore_df, column= str, cell= str):
+def columnIndex(chore_df, column= str, cell= str):
         try:
             index = chore_df.index[chore_df[column] == cell].tolist()[0]
             return index
@@ -33,7 +31,7 @@ if __name__ == "__main__":
             print(f"{column} {cell} not found please try again")
             return None
         
-    def saveToFile(chore_df, filePath):
+def saveToFile(chore_df, filePath):
         """
         Save the updated DataFrame to the Excel file.
 
@@ -45,7 +43,7 @@ if __name__ == "__main__":
         chore_df.to_excel(filePath, index=False)
         return
     
-    def duplicateSheet(filePath): #doesnt work here but works in test.py
+def duplicateSheet(filePath): #doesnt work here but works in test.py
         """
         Duplicate a sheet in the same Excel file.
 
@@ -61,15 +59,24 @@ if __name__ == "__main__":
             duplicated_sheet.title = duplicated_sheet_name
             workbook.save(filePath)
             workbook.close()
+            return
 
         except Exception as e:
             print(f"Error duplicating sheet: {e}")
+            return
+
+# __name__ == "__main__":
+
 
     
 
-duplicateSheet(filePath)
+    
 
-saveToFile(chore_df, filePath)
+    
+
+# duplicateSheet(filePath)
+
+# saveToFile(chore_df, filePath)
 
 
 
@@ -87,8 +94,3 @@ saveToFile(chore_df, filePath)
 
 # chore_df = readFile(chore_df)
 # print (chore_df)
-
-
-
-
-

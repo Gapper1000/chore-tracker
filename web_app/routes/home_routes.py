@@ -5,10 +5,6 @@ from flask import Blueprint, request, render_template
 home_routes = Blueprint("home_routes", __name__)
 
 @home_routes.route("/")
-@home_routes.route("/login")
-def login(): 
-    print("LOGIN...")
-    return render_template("login.html")
 
 @home_routes.route("/home")
 def index():
@@ -43,8 +39,3 @@ def hello_world():
     message = f"Hello, {name}!"
     #return message
     return render_template("hello.html", message=message)
-
-@home_routes.route("/tasks")
-def tasks():
-
-    return render_template("tasks.html")
