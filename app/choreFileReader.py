@@ -8,13 +8,6 @@ selected_columns = ['Assignee', 'Task', 'Due Date', 'Status']
 
 def readFile(filePath):
         chore_df = pd.read_excel(filePath, usecols=selected_columns)
-        # chore_df['Assignee'] = chore_df['Assignee'].astype(object)
-        # chore_df['Task'] = chore_df['Task'].astype(str)
-        # chore_df['Due Date'] = pd.to_datetime(chore_df['Due Date'], errors='coerce')
-        # for index, row in chore_df.iterrows():
-        #     if pd.isnull(row['Status']):
-        #         chore_df.at[index, 'Status'] = 0
-        # chore_df['Status'] = chore_df['Status'].astype(bool)
         return chore_df
 
 def editStatus(chore_df, task_name=str, new_status=bool):
@@ -32,24 +25,10 @@ def columnIndex(chore_df, column= str, cell= str):
             return None
         
 def saveToFile(chore_df, filePath):
-        """
-        Save the updated DataFrame to the Excel file.
-
-        Parameters:
-        - chore_df (pd.DataFrame): The updated Chore Tracker DataFrame.
-        - filePath (str): The path to the Excel file.
-        - sheet_name (str): The name of the sheet in the Excel file. Default is 'ChoreTracker'.
-        """
         chore_df.to_excel(filePath, index=False)
         return
     
 def duplicateSheet(filePath): #doesnt work here but works in test.py
-        """
-        Duplicate a sheet in the same Excel file.
-
-        Parameters:
-        - filePath (str): The path to the Excel file.
-        """
         try:
             workbook = load_workbook(filePath)
             source_sheet_name = workbook.sheetnames[0]

@@ -14,3 +14,9 @@ def login(username, password):
     else:
         loginSuccess = False
     return loginSuccess
+
+def checkLogin(session):
+    if 'username' not in session:
+        return False
+    else:
+        return True
