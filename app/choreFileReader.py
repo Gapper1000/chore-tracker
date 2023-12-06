@@ -27,8 +27,25 @@ def columnIndex(chore_df, column= str, cell= str):
 def saveToFile(chore_df, filePath):
         chore_df.to_excel(filePath, index=False)
         return
+
+def choreProgress(chore_df, status_column='Status'):
+    try:
+        if status_column not in chore_df.columns:
+            raise ValueError(f"Column '{status_column}' not found in the Excel sheet.")
+
+            # Convert the status column to numeric (assuming it contains numeric values)
+        chore_df[status_column] = pd.to_numeric(chore_df[status_column], errors='coerce')
+
+            # Sum up the progress values
+        progress_sum = chore_df[status_column].sum()
+
+        return progress_sum
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
     
-def duplicateSheet(filePath): #doesnt work here but works in test.py
+def duplicateSheet(filePath): #doesnt work here but works in duplicate.py
         try:
             workbook = load_workbook(filePath)
             source_sheet_name = workbook.sheetnames[0]
