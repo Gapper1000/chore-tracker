@@ -3,32 +3,23 @@
 
 {% block content %}
 
-<h2>Chore Dashboard</h2>
+<div class="container mt-4">
+    <h2>Chore List</h2>
 
-<p class="lead">Number of housemates: {{ latest_rate_pct }} living at {{ latest_date }}</p> <!-- Fix this to make it the house plus number of housemates-->
+    <!-- File upload form -->
+    <form method="post" enctype="multipart/form-data" action="{{ url_for('tasks_routes.tasks_table') }}">
+        <div class="mb-3">
+            <label for="file" class="form-label">Choose a file</label>
+            <input type="file" class="form-control" id="file" name="file" accept=".xlsx, .csv">
+        </div>
+        <button type="submit" class="btn btn-primary">Upload and View Table</button>
+    </form>
 
-<table class="table table-hover table-responsive caption-top">
-    <caption>Chore Table</caption>
-    <thead>
-        <tr>
-            <th scope="col">Task</th>
-            <th scope="col">Assignee</th>
-            <th scope="col">Due Date</th>
-            <th scope="col">Status</th>
-        </tr>
-    </thead>
-    <tbody>
+    <hr>
 
-        {% for index, row in chore_df.iterrows() %}
-        <tr>
-            <td>{{ row['Assignee'] }}</td>
-            <td>{{ row['Task'] }}</td>
-            <td>{{ row['Due Date'] }}</td>
-            <td>{{ 'Done' if row['Status'] else 'Pending' }}</td>
-        </tr>
-    {% endfor %}
+    <!-- Display the table if available -->
+    {{ table_html | safe }}
 
-    </tbody>
-</table>
+</div>
 
 {% endblock %}
