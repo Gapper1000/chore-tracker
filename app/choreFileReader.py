@@ -1,12 +1,13 @@
 import pandas as pd
-import openpyxl
+import os
+from openpyxl import load_workbook
 
 filePath = "/Users/gmp/Documents/GitHub/chore-tracker/Chore Tracker.xlsx"
 selected_columns = ['Assignee', 'Task', 'Due Date', 'Status']
 chore_df = pd.read_excel(filePath, usecols=selected_columns)
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
 
     def readFile(chore_df):
         chore_df['Assignee'] = chore_df['Assignee'].astype(object)
@@ -42,9 +43,33 @@ if __name__ == "__main__":
         - sheet_name (str): The name of the sheet in the Excel file. Default is 'ChoreTracker'.
         """
         chore_df.to_excel(filePath, index=False)
-        print("changes saved")
         return
+    
+    def duplicateSheet(filePath): #doesnt work here but works in test.py
+        """
+        Duplicate a sheet in the same Excel file.
 
+        Parameters:
+        - filePath (str): The path to the Excel file.
+        """
+        try:
+            workbook = load_workbook(filePath)
+            source_sheet_name = workbook.sheetnames[0]
+            source_sheet = workbook[source_sheet_name]
+            duplicated_sheet_name = f"Copy of {source_sheet_name}"
+            duplicated_sheet = workbook.copy_worksheet(source_sheet)
+            duplicated_sheet.title = duplicated_sheet_name
+            workbook.save(filePath)
+            workbook.close()
+
+        except Exception as e:
+            print(f"Error duplicating sheet: {e}")
+
+    
+
+duplicateSheet(filePath)
+
+saveToFile(chore_df, filePath)
 
 
 

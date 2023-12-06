@@ -7,10 +7,10 @@ load_dotenv()
 usernameOS = os.getenv("userLogin")
 passwordOS = os.getenv("passwordLogin")
 
-def login():
-    loginSuccess = False
-    if username == usernameOS and password == passwordOS:
-        loginSuccess = True
-    else:
-        loginSuccess = False
-    return loginSuccess
+# def login():
+#     loginSuccess = False
+#     if username == usernameOS and password == passwordOS:
+#         loginSuccess = True
+#     else:
+#         loginSuccess = False
+#     return loginSuccess
