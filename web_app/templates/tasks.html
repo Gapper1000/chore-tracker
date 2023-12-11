@@ -1,22 +1,26 @@
 {% extends "bootstrap_5_layout.html" %}
 {% set active_page = "progress" %}
 {% block content %}
-<div class="list-group">
-  
-  <!-- Form to handle task updates -->
-  <form method="post" action="/tasks/update">
+<div class="container mt-4">
+    <h2>Task List</h2>
 
-    {% for task in tasks %}
-      <label class="list-group-item">
-        <input class="form-check-input me-1" type="checkbox" name="tasks" value="{{ task['id'] }}" {% if task['completed'] %} checked {% endif %}>
-        {{ task['Task'] }}
-      </label>
-    {% endfor %}
+    <div class="list-group">
+        <!-- Form to handle task updates -->
+        <form method="post" action="{{ url_for('tasks_routes.update_tasks') }}">
+          {% for task in tasks %}
+          <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" name="tasks" value="{{ task['id'] | string }}"
+                     {% if task['Status'] %} checked {% endif %}>
+              {{ task['Task'] }}
+          </label>
+      {% endfor %}
 
-    <!-- Save Changes Button -->
-    <button type="submit" class="btn btn-primary mt-3" id="saveChangesBtn">Save Changes</button>
+            <!-- Save Changes Button -->
+            <button type="submit" class="btn btn-primary mt-3" id="saveChangesBtn">Save Changes</button>
+        </form>
+    </div>
 
-  </form>
-
+    <!-- Download Button -->
+    <a href="{{ url_for('tasks_routes.download_file') }}" class="btn btn-success mt-3">Download Updated File</a>
 </div>
 {% endblock %}
