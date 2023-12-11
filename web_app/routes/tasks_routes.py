@@ -62,7 +62,10 @@ def tasks_form():
 
 @tasks_routes.route("/tasks/update", methods=["POST"])
 def update_tasks():
-    checked_tasks = request.form.getlist('tasks')
+    print("update")
+    print("Form data:", dict(request.form))
+    checked_tasks = request.values.getlist('tasks')
+    print(checked_tasks)
 
     try:
         update_workbook(session['file_path'], checked_tasks)
