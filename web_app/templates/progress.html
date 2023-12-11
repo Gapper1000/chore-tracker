@@ -1,0 +1,9 @@
+{% extends "bootstrap_5_layout.html" %}
+{% set active_page = "progress" %}
+
+{% block content %}
+<div class="container">
+    <h2>Assignee Task Progress</h2>
+    {{ progress_html|safe }}
+</div>
+{% endblock %}

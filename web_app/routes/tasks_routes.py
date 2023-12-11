@@ -90,3 +90,29 @@ def download_file():
     else:
         flash("No file available for download.", "danger")
         return redirect('/tasks/table')
+    
+@tasks_routes.route("/tasks/progress")
+def tasks_progress():
+    if 'file_path' in session:
+        try:
+            file_path = session['file_path']
+            tasks_df = readFile(file_path)
+
+            # Assuming your DataFrame has 'Assignee' and 'Status' columns
+            progress_df = tasks_df.groupby('Assignee')['Status'].value_counts().unstack(fill_value=0)
+            progress_df['Total'] = progress_df.sum(axis=1)
+            progress_df['Completed'] = progress_df.get('completed', 0)
+            progress_df['Progress'] = (progress_df['Completed'] / progress_df['Total']) * 100
+
+            progress_html = progress_df[['Total', 'Completed', 'Progress']].to_html(classes='table table-bordered table-hover')
+
+            return render_template("progress.html", progress_html=progress_html)
+        except Exception as err:
+            print('Error:', err)
+            flash("Error processing task data for progress, please try again!", "danger")
+
+    else:
+        flash("No file selected, please upload a file first", "danger")
+
+    return redirect('/tasks/table')
+
