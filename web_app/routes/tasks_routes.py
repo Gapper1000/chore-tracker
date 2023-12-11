@@ -3,55 +3,49 @@ from app.choreFileReader import readFile
 import os
 from werkzeug.utils import secure_filename
 
-filePath = "/Users/gmp/Documents/GitHub/chore-tracker/Chore Tracker.xlsx"
-
 tasks_routes = Blueprint("tasks_routes", __name__)
 
 @tasks_routes.route("/tasks/table", methods=["GET", "POST"])
 def tasks_table():
     if request.method == "POST":
-        file = request.files.get("file")  # Using get method to avoid KeyError if 'file' is not in request.files
+        file = request.files.get("file")
 
-        if file and file.filename != '':  # Check if the file exists and has a filename
+        if file and file.filename != '':
+            # Process the uploaded file
             filename = secure_filename(file.filename)
-            file.save(os.path.join("uploads", filename))
-
-            try:
-                chore_df = readFile(os.path.join("uploads", filename))
-                session['file_name'] = filename
-                table_html = chore_df.to_html(classes='table table-bordered table-hover', index=False)
-                flash("Fetched Latest Chore Data", "success")
-                return render_template("table.html", table_html=table_html)
-            except Exception as err:
-                print('OOPS', err)
-                flash("Chore data error, please try again!", "danger")
-                return redirect("/")
+            file_path = os.path.join("uploads", filename)
+            file.save(file_path)
+            session['file_path'] = file_path
+            session['file_name'] = filename
         else:
-            # Handle the case where no file is uploaded
+            # If no file was uploaded in this POST request
             flash("No file uploaded. Please upload a file.", "danger")
-            return redirect("/tasks/table")
 
-    else:
+    if 'file_path' in session:
+        # If there is a file in the session, try to read and display it
         try:
-            chore_df = readFile(filePath)
-            session['file_name'] = "Chore Tracker.xlsx"
+            file_path = session['file_path']
+            chore_df = readFile(file_path)
             table_html = chore_df.to_html(classes='table table-bordered table-hover', index=False)
             flash("Fetched Latest Chore Data", "success")
             return render_template("table.html", table_html=table_html)
         except Exception as err:
             print('OOPS', err)
             flash("Chore data error, please try again!", "danger")
-            return redirect("/tasks/table")
+            session.pop('file_path', None)  # Remove invalid file path from session
+            return render_template("table.html")  # Still render the table page, but without data
 
+    # If there is no file in the session, just show the page with upload option
+    return render_template("table.html")
 
 @tasks_routes.route("/tasks/form")
 def tasks_form():
-
     file_name = session.get('file_name')
+    file_path = session.get('file_path')
 
-    if file_name:
+    if file_path:
         try:
-            chore_df = readFile(os.path.join("uploads", file_name))
+            chore_df = readFile(file_path)
             tasks_data = chore_df.to_dict('records')
             return render_template("tasks.html", tasks=tasks_data)
         except Exception as err:
