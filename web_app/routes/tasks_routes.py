@@ -7,22 +7,12 @@ filePath = "/Users/gmp/Documents/GitHub/chore-tracker/Chore Tracker.xlsx"
 
 tasks_routes = Blueprint("tasks_routes", __name__)
 
-
 @tasks_routes.route("/tasks/table", methods=["GET", "POST"])
 def tasks_table():
-
     if request.method == "POST":
-        if "file" not in request.files:
-            chore_df = readFile(filePath)
-            session['file_name'] = "Chore Tracker.xlsx"
-            table_html = chore_df.to_html(classes='table table-bordered table-hover', index=False)
+        file = request.files.get("file")  # Using get method to avoid KeyError if 'file' is not in request.files
 
-            flash("Fetched Latest Chore Data", "success")
-            return render_template("table.html", table_html=table_html)
-
-        file = request.files["file"]
-
-        if file:
+        if file and file.filename != '':  # Check if the file exists and has a filename
             filename = secure_filename(file.filename)
             file.save(os.path.join("uploads", filename))
 
@@ -36,19 +26,23 @@ def tasks_table():
                 print('OOPS', err)
                 flash("Chore data error, please try again!", "danger")
                 return redirect("/")
+        else:
+            # Handle the case where no file is uploaded
+            flash("No file uploaded. Please upload a file.", "danger")
+            return redirect("/tasks/table")
 
     else:
         try:
             chore_df = readFile(filePath)
             session['file_name'] = "Chore Tracker.xlsx"
             table_html = chore_df.to_html(classes='table table-bordered table-hover', index=False)
-
             flash("Fetched Latest Chore Data", "success")
             return render_template("table.html", table_html=table_html)
         except Exception as err:
             print('OOPS', err)
             flash("Chore data error, please try again!", "danger")
-            return redirect("/")
+            return redirect("/tasks/table")
+
 
 @tasks_routes.route("/tasks/form")
 def tasks_form():
