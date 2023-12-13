@@ -51,6 +51,7 @@ def tasks_form():
         try:
             chore_df = readFile(file_path)
             tasks_data = chore_df.to_dict('records')
+            print(tasks_data)
             return render_template("tasks.html", tasks=tasks_data)
         except Exception as err:
             print('OOPS', err)
@@ -62,10 +63,7 @@ def tasks_form():
 
 @tasks_routes.route("/tasks/update", methods=["POST"])
 def update_tasks():
-    print("update")
-    print("Form data:", dict(request.form))
-    checked_tasks = request.values.getlist('tasks')
-    print(checked_tasks)
+    checked_tasks = request.values.keys()
 
     try:
         update_workbook(session['file_path'], checked_tasks)

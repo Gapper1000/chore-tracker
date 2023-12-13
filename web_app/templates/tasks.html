@@ -9,11 +9,11 @@
         <form method="post" action="{{ url_for('tasks_routes.update_tasks') }}">
           {% for task in tasks %}
           <label class="list-group-item">
-              <input class="form-check-input me-1" type="checkbox" name="tasks" value="{{ task['id'] | string }}"
+              <input class="form-check-input me-1" type="checkbox" name="{{ task['Task'] }}" id="{{ task['Task'] }}"
                      {% if task['Status'] %} checked {% endif %}>
               {{ task['Task'] }}
           </label>
-      {% endfor %}
+            {% endfor %}
 
             <!-- Save Changes Button -->
             <button type="submit" class="btn btn-primary mt-3" id="saveChangesBtn">Save Changes</button>
