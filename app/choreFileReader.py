@@ -65,9 +65,9 @@ def update_workbook(file_path, checked_tasks_ids):
     workbook = load_workbook(filename=file_path)
     sheet = workbook.active
 
-    for row in sheet.iter_rows(min_row=2, values_only=False):
+    for i, row in enumerate(sheet.iter_rows(min_row=2, values_only=False)):
         task_id = row[0].value
         # Set the value to True if task_id is in checked_tasks_ids, else False
-        row[3].value = str(task_id) in checked_tasks_ids
+        row[3].value = str(i + 1) in checked_tasks_ids
 
     workbook.save(filename=file_path)
