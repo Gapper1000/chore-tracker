@@ -16,6 +16,8 @@ Create a ".env" file and paste in the following contents:
 ```sh
 # this is the ".env" file...
 
+SECRET_KEY = "example_secret_key"
+
 ```
 
 
