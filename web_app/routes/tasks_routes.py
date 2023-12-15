@@ -51,8 +51,12 @@ def tasks_form():
         try:
             chore_df = readFile(file_path)
             tasks_data = chore_df.to_dict('records')
+
+            # Extracting unique assignee names
+            assignees = list({task.get('Assignee') for task in tasks_data if task.get('Assignee')})
+
             print(tasks_data)
-            return render_template("tasks.html", tasks=tasks_data)
+            return render_template("tasks.html", tasks=tasks_data, assignees=assignees)
         except Exception as err:
             print('OOPS', err)
             flash("Error reading file data, please try again!", "danger")

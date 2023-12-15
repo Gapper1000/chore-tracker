@@ -1,23 +1,33 @@
 {% extends "bootstrap_5_layout.html" %}
 {% set active_page = "checklist" %}
-
 {% block content %}
 <div class="container mt-4">
     <h2>Task List</h2>
+
+    <!-- Dropdown for Assignee Selection -->
+    <div class="mb-3">
+        <label for="assigneeSelection" class="form-label">Select Assignee:</label>
+        <select class="form-select" id="assigneeSelection">
+            <option value="all">All</option>
+            {% for assignee in assignees %}
+            <option value="{{ assignee }}">{{ assignee }}</option>
+            {% endfor %}
+        </select>
+    </div>
 
     <div class="list-group">
         <!-- Form to handle task updates -->
         <form method="post" action="{{ url_for('tasks_routes.update_tasks') }}">
           {% for task in tasks %}
-          <label class="list-group-item">
-              <input class="form-check-input me-1" type="checkbox" name="{{ loop.index }}" id="{{ loop.index }}"
+          <div class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" name="status_{{ loop.index }}" id="status_{{ loop.index }}"
                      {% if task['Status'] %} checked {% endif %}>
-              {{ task['Task'] }}
-          </label>
-            {% endfor %}
+              <label for="status_{{ loop.index }}">{{ task['Task'] }}</label>
+          </div>
+          {% endfor %}
 
-            <!-- Save Changes Button -->
-            <button type="submit" class="btn btn-primary mt-3" id="saveChangesBtn">Save Changes</button>
+          <!-- Save Changes Button -->
+          <button type="submit" class="btn btn-primary mt-3" id="saveChangesBtn">Save Changes</button>
         </form>
     </div>
 
