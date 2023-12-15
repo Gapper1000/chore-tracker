@@ -19,7 +19,7 @@
         <!-- Form to handle task updates -->
         <form method="post" action="{{ url_for('tasks_routes.update_tasks') }}">
           {% for task in tasks %}
-          <div class="list-group-item">
+          <div class="list-group-item" data-assignee="{{ task['Assignee'] }}">
               <input class="form-check-input me-1" type="checkbox" name="status_{{ loop.index }}" id="status_{{ loop.index }}"
                      {% if task['Status'] %} checked {% endif %}>
               <label for="status_{{ loop.index }}">{{ task['Task'] }}</label>
@@ -34,4 +34,22 @@
     <!-- Download Button -->
     <a href="{{ url_for('tasks_routes.download_file') }}" class="btn btn-success mt-3">Download Updated File</a>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('assigneeSelection').addEventListener('change', function() {
+            var selectedAssignee = this.value;
+            var tasks = document.querySelectorAll('.list-group-item');
+
+            tasks.forEach(function(task) {
+                if (selectedAssignee === 'all' || task.getAttribute('data-assignee') === selectedAssignee) {
+                    task.style.display = '';
+                } else {
+                    task.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
 {% endblock %}
