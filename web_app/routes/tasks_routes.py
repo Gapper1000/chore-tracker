@@ -89,3 +89,28 @@ def download_file():
     else:
         flash("No file available for download.", "danger")
         return redirect('/tasks/table')
+
+@tasks_routes.route('/tasks/progress')
+def all_assignees_progress():
+    try:
+        if 'file_path' in session:
+            file_path = session['file_path']
+            chore_df = readFile(file_path)
+            assignees = chore_df['Assignee'].unique()
+
+            completion_data = {}
+            for assignee in assignees:
+                assignee_tasks = chore_df[chore_df['Assignee'] == assignee]
+                completed_tasks = assignee_tasks[assignee_tasks['Status'] == True].shape[0]
+                total_tasks = assignee_tasks.shape[0]
+                completion_rate = (completed_tasks / total_tasks) * 100 if total_tasks > 0 else 0
+                completion_data[assignee] = completion_rate
+            print(completion_data)
+            
+            return render_template('progress.html', completion_data=completion_data)
+        else:
+            flash("No file selected, please upload a file first", "danger")
+            return redirect('/tasks/table')
+    except Exception as err:
+        flash("Error processing data: " + str(err), "danger")
+        return redirect('/tasks/table')
