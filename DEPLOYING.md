@@ -13,7 +13,7 @@ Create a New "Web Service". Choose your own repository by specifying its public 
 
 Specify start command:
 
-```
+```sh
 gunicorn "web_app:create_app()"
 ```
 
