@@ -1,0 +1,20 @@
+{% extends "bootstrap_5_layout.html" %}
+{% set active_page = "progress" %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Task Completion Status for All Assignees</h2>
+    {% for assignee, rate in completion_data.items() %}
+        <div>
+            <h5>{{ assignee }}</h5>
+            <div class="progress my-2" style="height: 30px; width: 50%;">
+                <div class="progress-bar" role="progressbar" style="width: {{ rate|int }}%;" aria-valuenow="{{ rate|int }}" aria-valuemin="0" aria-valuemax="100">
+                    {{ rate|int }}%
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
