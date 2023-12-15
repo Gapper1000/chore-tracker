@@ -22,9 +22,6 @@ def tasks_table():
             # If no file was uploaded in this POST request
             flash("No file uploaded. Please upload a file.", "danger")
 
-    # The rest of your code...
-
-
     if 'file_path' in session:
         # If there is a file in the session, try to read and display it
         try:
