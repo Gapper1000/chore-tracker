@@ -68,6 +68,6 @@ def update_workbook(file_path, checked_tasks_ids):
     for i, row in enumerate(sheet.iter_rows(min_row=2, values_only=False)):
         task_id = row[0].value
         # Set the value to True if task_id is in checked_tasks_ids, else False
-        row[3].value = str(i + 1) in checked_tasks_ids
+        row[3].value = f"status_{str(i + 1)}" in checked_tasks_ids
 
     workbook.save(filename=file_path)
